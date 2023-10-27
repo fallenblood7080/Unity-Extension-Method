@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Extension
@@ -10,34 +11,74 @@ namespace Extension
     public static class DebugVisualExtension
     {
         /// <summary>
-        /// Draw the Circle Outline
+        /// Draw the Polygon Outline<br></br>
+        /// Useful for drawing Square,hexgon,circle
         /// <code>
-        /// circleCenter.DrawCircle(radius: 5, color: Color.white)
+        /// shapeCenter.DrawPolygon(radius: 5, color: Color.white,vertices:6) //create the hexagon
         /// </code>
         /// </summary>
-        /// <param name="center">Center of Circle coordinate in vector 2D </param>
-        /// <param name="radius">Radius of circle</param>
-        /// <param name="color">Color Of Circle Outline</param>
-        /// <param name="segments">No of vertices in circle</param>
+        /// <param name="center">Center of polygon coordinate in vector 2D </param>
+        /// <param name="radius">radius of poltgon, just the distance from center to vertex</param>
+        /// <param name="color">Color Of Outline</param>
+        /// <param name="vertices">No of vertices </param>
+        /// <param name="rotationAngle">How much shape will rotate in degree</param>
         /// <param name="dur">how long the circle should appear in seconds</param>
-        public static void DrawCircle(this Vector2 center, float radius, Color color, int segments = 32, float dur = 1)
+        public static void DrawPolygon(this Vector2 center, float radius, Color color, int vertices = 32, float rotationAngle = 0, float dur = 0.1f)
         {
-            Vector2[] points = new Vector2[segments];
-            float angleIncrement = 2 * Mathf.PI / segments;
-
-            for (int i = 0; i < segments; i++)
+            if (vertices > 0)
             {
-                float angle = i * angleIncrement;
-                Vector2 point = new(center.x + radius * Mathf.Cos(angle), center.y + radius * Mathf.Sin(angle));
-                points[i] = point;
-            }
+                Vector2[] points = new Vector2[vertices];
+                float angleIncrement = 2 * Mathf.PI / vertices;
 
-            for (int i = 0; i < segments - 1; i++)
+                for (int i = 0; i < vertices; i++)
+                {
+                    float angle = i * angleIncrement + (Mathf.Deg2Rad * rotationAngle);
+                    Vector2 point = new(center.x + radius * Mathf.Cos(angle), center.y + radius * Mathf.Sin(angle));
+                    points[i] = point;
+                }
+
+                for (int i = 0; i < vertices - 1; i++)
+                {
+                    Debug.DrawLine(points[i], points[i + 1], color, dur);
+                }
+
+                Debug.DrawLine(points[vertices - 1], points[0], color, dur); 
+            }
+        }
+
+        public static void VisualizeRay(this RaycastHit2D ray2D, Vector2 origin, Color color, float dur = 0.1f)
+        {
+            Debug.DrawLine(origin, ray2D.point, color, dur);
+        }
+        public static void VisualizeRay(this RaycastHit ray, Vector2 origin, Color color, float dur = 0.1f)
+        {
+            Debug.DrawLine(origin, ray.point, color, dur);
+        }
+
+        public static void DrawLineTo(this Vector3 origin, Vector3 end, Color color, float dur = 0.1f)
+        {
+            Debug.DrawLine(origin, end, color, dur);
+        }
+
+        public static void DrawLineFromPoints(this Vector3[] points, Color color, float dur = 0.1f)
+        {
+            for (int i = 0; i < points.Length - 1; i++)
             {
-                Debug.DrawLine(points[i], points[i + 1], color, dur);
-            }
+                Vector3 start = points[i];
+                Vector3 end = points[i + 1];
 
-            Debug.DrawLine(points[segments - 1], points[0], color, dur);
+                Debug.DrawLine(start, end, color, dur);
+            }
+        }
+        public static void DrawLineFromPoints(this List<Vector3> points, Color color, float dur = 0.1f)
+        {
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                Vector3 start = points[i];
+                Vector3 end = points[i + 1];
+
+                Debug.DrawLine(start, end, color, dur);
+            }
         }
     } 
 }
