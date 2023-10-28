@@ -7,11 +7,10 @@ namespace Extension.Example
     public class DebugVisualExtensionExample : MonoBehaviour
     {
         [Header("Polygon")]
-        [SerializeField] private Vector2 polygonCenter;
+        [SerializeField] private Transform polygonCenter;
         [SerializeField] private float radius;
         [SerializeField] private Color shapeColor = Color.white;
         [SerializeField] private int vertices = 64;
-        [SerializeField] private float rotationAngle = 0;
 
         [Header("Ray Visualizer")]
         [SerializeField] private Transform rayOrigin;
@@ -25,19 +24,30 @@ namespace Extension.Example
         [Header("Line from points")]
         [SerializeField] private Vector3[] points;
         [SerializeField] private Color linesColor = Color.blue;
-        void Update()
+
+        [Header("Sphere")]
+        [SerializeField] private Transform sphereCenter;
+        [SerializeField] private float sphereRadius;
+        [SerializeField] private Color sphereColor;
+        [SerializeField] private int segments;
+        void Update() 
         {
             float duration = Time.deltaTime;
 
-            polygonCenter.DrawPolygon(radius,shapeColor,vertices,rotationAngle,duration);
+            polygonCenter.position.DrawPolygon(radius, polygonCenter.rotation, shapeColor,vertices,duration);
 
-            RaycastHit2D rayHit;
-            rayHit = Physics2D.Raycast(rayOrigin.position, rayOrigin.up);
-            rayHit.VisualizeRay(rayOrigin.position, rayColor,duration);
+            RaycastHit rayHit;
+
+            if(Physics.Raycast(rayOrigin.position, rayOrigin.up, out rayHit))
+            {
+                rayHit.VisualizeRay(rayOrigin.position, rayColor, duration);
+            }
 
             start.position.DrawLineTo(end.position, lineColor, duration);
 
             points.DrawLineFromPoints(linesColor, duration);
+
+            sphereCenter.position.DrawSphere(sphereRadius,sphereCenter.rotation,sphereColor,segments,duration);
         }
     } 
 }

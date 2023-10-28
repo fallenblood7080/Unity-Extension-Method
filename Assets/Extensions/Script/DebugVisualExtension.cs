@@ -19,31 +19,42 @@ namespace Extension
         /// </summary>
         /// <param name="center">Center of polygon coordinate in vector 2D </param>
         /// <param name="radius">radius of poltgon, just the distance from center to vertex</param>
+        /// <param name="orientation">Orientation 2D shape in world</param>
         /// <param name="color">Color Of Outline</param>
         /// <param name="vertices">No of vertices </param>
-        /// <param name="rotationAngle">How much shape will rotate in degree</param>
         /// <param name="dur">how long the circle should appear in seconds</param>
-        public static void DrawPolygon(this Vector2 center, float radius, Color color, int vertices = 32, float rotationAngle = 0, float dur = 0.1f)
+        public static void DrawPolygon(this Vector3 center, float radius, Quaternion orientation, Color color, int vertices = 32, float dur = 0.1f)
         {
-            if (vertices > 0)
+            if(vertices < 3)
             {
-                Vector2[] points = new Vector2[vertices];
-                float angleIncrement = 2 * Mathf.PI / vertices;
-
-                for (int i = 0; i < vertices; i++)
-                {
-                    float angle = i * angleIncrement + (Mathf.Deg2Rad * rotationAngle);
-                    Vector2 point = new(center.x + radius * Mathf.Cos(angle), center.y + radius * Mathf.Sin(angle));
-                    points[i] = point;
-                }
-
-                for (int i = 0; i < vertices - 1; i++)
-                {
-                    Debug.DrawLine(points[i], points[i + 1], color, dur);
-                }
-
-                Debug.DrawLine(points[vertices - 1], points[0], color, dur); 
+                vertices = 3;
             }
+            float angleStep = (360.0f / vertices);
+            angleStep *= Mathf.Deg2Rad;
+
+            Vector3 pointStart = Vector3.zero;
+            Vector3 pointEnd = Vector3.zero;
+
+            for (int i = 0; i < vertices; i++)
+            {
+                pointStart.x = Mathf.Cos(angleStep * i);
+                pointStart.y = Mathf.Sin(angleStep * i);
+                pointStart.z = 0.0f;
+                pointEnd.x = Mathf.Cos(angleStep * (i + 1));
+                pointEnd.y = Mathf.Sin(angleStep * (i + 1));
+                pointEnd.z = 0.0f;
+
+                pointStart *= radius;
+                pointEnd *= radius;
+
+                pointStart = orientation * pointStart;
+                pointEnd = orientation * pointEnd;
+
+                pointStart += center;
+                pointEnd += center;
+                Debug.DrawLine(pointStart, pointEnd, color,dur);
+            }
+
         }
 
         public static void VisualizeRay(this RaycastHit2D ray2D, Vector2 origin, Color color, float dur = 0.1f)
@@ -78,6 +89,32 @@ namespace Extension
                 Vector3 end = points[i + 1];
 
                 Debug.DrawLine(start, end, color, dur);
+            }
+        }
+
+        public static void DrawSphere(this Vector3 center,float radius, Quaternion orientation,Color color,int segments = 16,float dur = 0.1f)
+        {
+            if(segments < 2)
+            {
+                segments = 2;
+            }
+            float merdianSteps = 180 / segments;
+            for (int i = 0; i < segments; i++)
+            {
+                center.DrawPolygon(radius,orientation * Quaternion.Euler(0, merdianSteps * i, 0), color, segments * 2, dur);
+            }
+
+            float parallelAngleStep = Mathf.PI / segments;
+            float stepRadius;
+            float stepAngle;
+
+            for (int i = 1; i < segments; i++)
+            {
+                stepAngle = parallelAngleStep * i;
+                Vector3 verticalOffset = Mathf.Cos(stepAngle) * radius * new Vector3(0,1,0);
+                stepRadius = Mathf.Sin(stepAngle) * radius;
+
+                (center + verticalOffset).DrawPolygon(stepRadius, orientation * Quaternion.Euler(90, 0, 0), color, segments * 2, dur);
             }
         }
     } 
