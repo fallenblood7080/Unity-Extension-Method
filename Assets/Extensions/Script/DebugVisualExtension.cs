@@ -11,18 +11,18 @@ namespace Extension
     public static class DebugVisualExtension
     {
         /// <summary>
-        /// Draw the Polygon Outline<br></br>
-        /// Useful for drawing Square,hexgon,circle
+        /// Draw the Polygon Outline.
+        /// Useful for drawing various polygons like squares, hexagons, and circles.
         /// <code>
-        /// shapeCenter.DrawPolygon(radius: 5, color: Color.white,vertices:6) //create the hexagon
+        /// shapeCenter.DrawPolygon(radius: 5, orientation: Quaternion.identity, color: Color.white, vertices: 6) // Create a hexagon
         /// </code>
         /// </summary>
-        /// <param name="center">Center of polygon coordinate in vector 2D </param>
-        /// <param name="radius">radius of poltgon, just the distance from center to vertex</param>
-        /// <param name="orientation">Orientation 2D shape in world</param>
-        /// <param name="color">Color Of Outline</param>
-        /// <param name="vertices">No of vertices </param>
-        /// <param name="dur">how long the circle should appear in seconds</param>
+        /// <param name="center">Center of the polygon coordinate in Vector3D.</param>
+        /// <param name="radius">Radius of the polygon, representing the distance from the center to a vertex.</param>
+        /// <param name="orientation">Orientation of the 2D shape in the world as a Quaternion.</param>
+        /// <param name="color">Color of the outline.</param>
+        /// <param name="vertices">Number of vertices to determine the shape's sides (e.g., 3 for a triangle, 4 for a square).</param>
+        /// <param name="dur">Duration for which the polygon should appear in seconds.</param>
         public static void DrawPolygon(this Vector3 center, float radius, Quaternion orientation, Color color, int vertices = 32, float dur = 0.1f)
         {
             if(vertices < 3)
@@ -32,17 +32,13 @@ namespace Extension
             float angleStep = (360.0f / vertices);
             angleStep *= Mathf.Deg2Rad;
 
-            Vector3 pointStart = Vector3.zero;
-            Vector3 pointEnd = Vector3.zero;
+            Vector3 pointStart;
+            Vector3 pointEnd;
 
             for (int i = 0; i < vertices; i++)
             {
-                pointStart.x = Mathf.Cos(angleStep * i);
-                pointStart.y = Mathf.Sin(angleStep * i);
-                pointStart.z = 0.0f;
-                pointEnd.x = Mathf.Cos(angleStep * (i + 1));
-                pointEnd.y = Mathf.Sin(angleStep * (i + 1));
-                pointEnd.z = 0.0f;
+                pointStart = new Vector3(Mathf.Cos(angleStep * i), Mathf.Sin(angleStep * i), 0.0f);
+                pointEnd = new Vector3(Mathf.Cos(angleStep * (i + 1)), Mathf.Sin(angleStep * (i + 1)), 0.0f);
 
                 pointStart *= radius;
                 pointEnd *= radius;
@@ -56,21 +52,45 @@ namespace Extension
             }
 
         }
-
+        /// <summary>
+        /// Visualizes a ray by drawing a line from the specified origin to the point where it hits an object.
+        /// </summary>
+        /// <param name="ray2D">The RaycastHit2D result representing the intersection of the ray with an object.</param>
+        /// <param name="origin">The starting point of the ray in 2D space.</param>
+        /// <param name="color">The color of the visualization line.</param>
+        /// <param name="dur">The duration for which the visualization line should appear in seconds.</param>
         public static void VisualizeRay(this RaycastHit2D ray2D, Vector2 origin, Color color, float dur = 0.1f)
         {
             Debug.DrawLine(origin, ray2D.point, color, dur);
         }
+        /// <summary>
+        /// Visualizes a ray by drawing a line from the specified origin to the point where it hits an object.
+        /// </summary>
+        /// <param name="ray">The RaycastHit result representing the intersection of the ray with an object.</param>
+        /// <param name="origin">The starting point of the ray in 3D space.</param>
+        /// <param name="color">The color of the visualization line.</param>
+        /// <param name="dur">The duration for which the visualization line should appear in seconds.</param>
         public static void VisualizeRay(this RaycastHit ray, Vector2 origin, Color color, float dur = 0.1f)
         {
             Debug.DrawLine(origin, ray.point, color, dur);
         }
-
+        /// <summary>
+        /// Draws a straight line from the specified 'origin' point to the 'end' point with the given color.
+        /// </summary>
+        /// <param name="origin">The starting point of the line in 3D space.</param>
+        /// <param name="end">The ending point of the line in 3D space.</param>
+        /// <param name="color">The color of the drawn line.</param>
+        /// <param name="dur">The duration for which the line should be visible in seconds.</param>
         public static void DrawLineTo(this Vector3 origin, Vector3 end, Color color, float dur = 0.1f)
         {
             Debug.DrawLine(origin, end, color, dur);
         }
-
+        /// <summary>
+        /// Draws a series of lines connecting the points in the provided array, creating a continuous path.
+        /// </summary>
+        /// <param name="points">An array of Vector3 points representing the path to be drawn.</param>
+        /// <param name="color">The color of the drawn lines.</param>
+        /// <param name="dur">The duration for which the lines should be visible in seconds.</param>
         public static void DrawLineFromPoints(this Vector3[] points, Color color, float dur = 0.1f)
         {
             for (int i = 0; i < points.Length - 1; i++)
@@ -81,6 +101,12 @@ namespace Extension
                 Debug.DrawLine(start, end, color, dur);
             }
         }
+        /// <summary>
+        /// Draws a series of lines connecting the points in the provided List, creating a continuous path.
+        /// </summary>
+        /// <param name="points">A List of Vector3 points representing the path to be drawn.</param>
+        /// <param name="color">The color of the drawn lines.</param>
+        /// <param name="dur">The duration for which the lines should be visible in seconds.</param>
         public static void DrawLineFromPoints(this List<Vector3> points, Color color, float dur = 0.1f)
         {
             for (int i = 0; i < points.Count - 1; i++)
@@ -91,7 +117,15 @@ namespace Extension
                 Debug.DrawLine(start, end, color, dur);
             }
         }
-
+        /// <summary>
+        /// Draws a 3D sphere with the specified center, radius, orientation, color, and level of detail (segments).
+        /// </summary>
+        /// <param name="center">The center of the sphere in 3D space.</param>
+        /// <param name="radius">The radius of the sphere, determining its size.</param>
+        /// <param name="orientation">The orientation of the sphere as a Quaternion.</param>
+        /// <param name="color">The color of the sphere's outline.</param>
+        /// <param name="segments">The number of segments used to approximate the sphere's surface (for smoother rendering).</param>
+        /// <param name="dur">The duration for which the sphere should appear in seconds.</param>
         public static void DrawSphere(this Vector3 center,float radius, Quaternion orientation,Color color,int segments = 16,float dur = 0.1f)
         {
             if(segments < 2)
