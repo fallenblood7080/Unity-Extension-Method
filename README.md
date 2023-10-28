@@ -20,7 +20,7 @@
 
 ## What's the deal with this project?
 
-"Alright, check it out! This project is all about hooking you up with a bunch of nifty extension methods that'll turbocharge your Unity workflow. Say goodbye to the slow lane and hello to lightning-fast development!"
+Alright, check it out! This project is all about hooking you up with a bunch of nifty extension methods that'll turbocharge your Unity workflow. Say goodbye to the slow lane and hello to lightning-fast development!
 
 ## Why should I care about this project?
 
