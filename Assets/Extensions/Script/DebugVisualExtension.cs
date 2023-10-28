@@ -1,3 +1,8 @@
+//TODO: ADD CUBE,CUBOID Shapes
+//TODO: ADD CYLINDER,CAPSULE
+//TODO: ADD ARC of Circle - mainly for FOV types for things
+//TODO: ADD 2D Shapes - Square(we can create square from DrawPolygon but in term of diagonal length), Rectangle, Capsule2D
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +10,7 @@ namespace Extension
 {
     /// <summary>
     /// This class contains set of extension method which allows you to debug in unity by visual.
-    /// These Extension methods are just alternative of <b>OnGizmosDraw.</b> <br></br>
+    /// These Extension methods are just alternative of <b>OnGizmosDraw and Debug</b> <br></br>
     /// With the help of this you quickly draw shapes to determine radius of enemy, FOV, draw line from A to B etc. easily
     /// </summary>
     public static class DebugVisualExtension
