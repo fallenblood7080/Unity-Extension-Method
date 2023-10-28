@@ -1,6 +1,6 @@
 <h1 align = "center">Unity Extension Method</h1>
 
-# Currently UnderDevlopment 
+# Currently UnderDevelopment 
 ### Need to add more methods and documentation
 
 ![GitHub contributors](https://img.shields.io/github/contributors/fallenblood7080/Unity-Extension-Method) ![GitHub forks](https://img.shields.io/github/forks/fallenblood7080/Unity-Extension-Method) ![GitHub Repo stars](https://img.shields.io/github/stars/fallenblood7080/Unity-Extension-Method)
