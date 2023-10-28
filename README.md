@@ -7,10 +7,10 @@
 
 ## Table of Content
 
- - [What's the deal with this project?](https://github.com/fallenblood7080/Unity-Extension-Method#whats-the-deal-with-this-project)
- - [Why should I care about this project](https://github.com/fallenblood7080/Unity-Extension-Method#why-should-i-care-about-this-project)
- - [How do I dive in and get started?](https://github.com/fallenblood7080/Unity-Extension-Method#how-do-i-dive-in-and-get-started)
- - [Where can I turn for help if I'm stuck?](https://github.com/fallenblood7080/Unity-Extension-Method#where-can-i-turn-for-help-if-im-stuck)
+ - [What's the deal with this project?](#whats-the-deal-with-this-project)
+ - [Why should I care about this project](#why-should-i-care-about-this-project)
+ - [How do I dive in and get started?](#how-do-i-dive-in-and-get-started)
+ - [Where can I turn for help if I'm stuck?](#where-can-i-turn-for-help-if-im-stuck)
  
 
 
