@@ -33,7 +33,9 @@ Imagine this: tons of ready-to-use extension methods that not only cut down your
 
 ## How do I dive in and get started?
 working.... go to wiki section for contribution
+
 ## Where can I turn for help if I'm stuck?
+Feeling a bit stuck and need some friendly advice? No worries, we've got your back! Just swing by our Discussion Page on GitHub.
 
 ### Contributors
 <a href="https://github.com/fallenblood7080/Unity-Extension-Method/graphs/contributors">
