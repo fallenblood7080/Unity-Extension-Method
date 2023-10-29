@@ -32,7 +32,7 @@ Alright, check it out! This project is all about hooking you up with a bunch of 
 Imagine this: tons of ready-to-use extension methods that not only cut down your development time but also give your code that clean, straightforward look you've been dreaming of. So, if that sounds like your kind of thing, you're in the right place.
 
 ## How do I dive in and get started?
-working.... got wiki section for contribution
+working.... go to wiki section for contribution
 ## Where can I turn for help if I'm stuck?
 
 ### Contributors
