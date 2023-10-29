@@ -7,13 +7,14 @@ namespace Extension.Example
     public class Physic2DExtensionExample : MonoBehaviour
     {
         [SerializeField] private float explosionRange, explosionPwr;
+        [SerializeField] private LayerMask explosionLayer;
         private void Update()
         {
 
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 explosionPoint = Input.mousePosition.ScreenToWorldPoint(Camera.main);
-                explosionPoint.Add2DExplosiveForce(explosionRange, explosionPwr);
+                explosionPoint.Add2DExplosiveForce(explosionRange, explosionPwr,explosionLayer);
             }
 
         }
