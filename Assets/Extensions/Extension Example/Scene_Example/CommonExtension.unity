@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logInputField: {fileID: 1234758930}
-  logColor: {r: 1, g: 1, b: 1, a: 1}
-  fontSize: 10
+  logColor: {r: 1, g: 0.051886797, b: 0.051886797, a: 1}
+  fontSize: 12
 --- !u!1 &89815917
 GameObject:
   m_ObjectHideFlags: 0
