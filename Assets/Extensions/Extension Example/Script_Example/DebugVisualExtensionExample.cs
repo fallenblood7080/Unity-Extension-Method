@@ -49,5 +49,5 @@ namespace Extension.Example
 
             sphereCenter.position.DrawSphere(sphereRadius,sphereCenter.rotation,sphereColor,segments,duration);
         }
-    } 
+    }  
 }
