@@ -19,7 +19,7 @@
 
 
 
-## What's the deal with this project why should I Care?
+## Could you tell me what's going on with this project? Why should I Care?
 
 To answer this question, first understand what the Extension method is.
 
@@ -39,6 +39,20 @@ now this code looks out of place if we compare it with `newText = oldText.ToUppe
 ```cs
 newText = oldText.ToTitleCase()
 ```
+
+**Here are the few Examples of Extension Method that are provided by this repo**
+```cs
+audioSource.PlayFadeIn(fadeDuration:2,EaseType.EaseIn); //Plays the audio with 2 sec fade in with ease in effect.
+```
+```cs
+explosionPoint.Add2DExplosiveForce(5, 10, explosionLayer); //Add the 2D Explosion Force of 10 unit force with the radius of 5 units which will impact the object in explosionLayer at explosionPoint(Vector2)
+```
+
+```cs
+someRandomList.GetRandomItem(2); //get 2 random items from the someRandomList
+```
+
+
 
 **So How will I create it?**
 Well in the first place, you do not have to that's why this repo exists, all you need put this repo inside your unity project and just call the method like this `something.DoSomethingMoreAwesome()`
