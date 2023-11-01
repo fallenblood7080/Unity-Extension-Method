@@ -40,6 +40,11 @@ now this code looks out of place if we compare it with `newText = oldText.ToUppe
 newText = oldText.ToTitleCase()
 ```
 
+
+
+**So How will I create it?**
+Well in the first place, you do not have to that's why this repo exists, all you need put this repo inside your unity project and just call the method like this `something.DoSomethingMoreAwesome()`
+
 **Here are the few Examples of Extension Method that are provided by this repo**
 ```cs
 audioSource.PlayFadeIn(fadeDuration:2,EaseType.EaseIn); //Plays the audio with 2 sec fade in with ease in effect.
@@ -51,11 +56,6 @@ explosionPoint.Add2DExplosiveForce(5, 10, explosionLayer); //Add the 2D Explosio
 ```cs
 someRandomList.GetRandomItem(2); //get 2 random items from the someRandomList
 ```
-
-
-
-**So How will I create it?**
-Well in the first place, you do not have to that's why this repo exists, all you need put this repo inside your unity project and just call the method like this `something.DoSomethingMoreAwesome()`
 
 ## How do I dive in and get started?
 working.... go to wiki section for contribution
