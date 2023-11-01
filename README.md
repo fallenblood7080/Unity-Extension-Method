@@ -11,7 +11,7 @@
 
 ## Table of Content
 
- - 📃 [What's the deal with this project?](#whats-the-deal-with-this-project-why-should-i-care)
+ - 📃 [Could you tell me what's going on with this project? Why should I Care?](#Could-you-tell-me-whats-going-on-with-this-project-Why-should-I-Care)
  - ⌨ [How do I dive in and get started?](#how-do-i-dive-in-and-get-started)
  - ⁉ [Where can I turn for help if I'm stuck?](#where-can-i-turn-for-help-if-im-stuck)
  
