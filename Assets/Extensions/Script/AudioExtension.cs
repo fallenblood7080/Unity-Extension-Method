@@ -53,23 +53,58 @@ namespace Extension
         /// <param name="audioSource">The AudioSource to play with the fade-in and fade-out effects.</param>
         /// <param name="fadeInDuration">The duration of the fade-in effect in seconds.</param>
         /// <param name="fadeOutDuration">The duration of the fade-out effect in seconds.</param>
-        /// <param name="easeType">The type of easing to use for the fade-in and fade-out animations.</param>
+        /// <param name="fadeInEase">The type of easing to use for the fade-in and fade-out animations.</param>
         /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when the fade-in is complete.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
-        public static void PlayFadeInOut(this AudioSource audioSource, float fadeInDuration, float fadeOutDuration, EaseType easeType, float targetVolume = 1, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+        public static void PlayFadeInOut(this AudioSource audioSource, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
         {
-            audioSource.PlayFadeIn(fadeInDuration, easeType, targetVolume, () =>
+            audioSource.PlayFadeIn(fadeInDuration, fadeInEase, targetVolume, () =>
             {
                 OnFadeInComplete?.Invoke();
-                audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeOutDuration, easeType, false,() => 
+                audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeOutDuration, fadeOutEase, false,() => 
                 {
                     OnFadeOutComplete?.Invoke();
                     if (audioSource.loop)
                     {
-                        audioSource.PlayFadeInOut(fadeInDuration,fadeOutDuration,easeType,targetVolume,OnFadeInComplete,OnFadeOutComplete);
+                        audioSource.PlayFadeInOut(fadeInDuration,fadeOutDuration,fadeInEase,fadeOutEase,targetVolume,OnFadeInComplete,OnFadeOutComplete);
                     }
                 }));
+            });
+        }
+        /// <summary>
+        /// Plays a sequence of AudioSources with fade-in and fade-out effects, allowing for sequential playback.
+        /// </summary>
+        /// <param name="audioSourceSeq">An array of AudioSources to play in sequence.</param>
+        /// <param name="fadeInDuration">The duration of the fade-in effect for each AudioSource in the sequence (in seconds).</param>
+        /// <param name="fadeOutDuration">The duration of the fade-out effect for each AudioSource in the sequence (in seconds).</param>
+        /// <param name="fadeInEase">The easing type for the fade-in animation.</param>
+        /// <param name="fadeOutEase">The easing type for the fade-out animation.</param>
+        /// <param name="shouldLoopSeq">Indicates whether the sequence should loop when it reaches the end.</param>
+        /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
+        /// <param name="startingIndex">The index of the AudioSource to start the sequence from (default is 0).</param>
+        /// <param name="OnFadeInComplete">An optional callback to invoke when each fade-in is complete.</param>
+        /// <param name="OnFadeOutComplete">An optional callback to invoke when each fade-out is complete.</param>
+        public static void PlayAudioSequence(this AudioSource[] audioSourceSeq, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase,bool shouldLoopSeq = false ,float targetVolume = 1, int startingIndex = 0,Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+        {
+            int index = startingIndex;
+            audioSourceSeq[index].PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume,OnFadeInComplete,OnFadeOutComplete: () =>
+            {
+                OnFadeOutComplete?.Invoke();
+                index++;
+                index.ToString().Log();
+                if (index >= audioSourceSeq.Length - 1)
+                {
+                    if (shouldLoopSeq)
+                    {
+                        index = 0;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                audioSourceSeq.PlayAudioSequence(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, shouldLoopSeq, targetVolume, index, OnFadeInComplete, OnFadeOutComplete);
             });
         }
 

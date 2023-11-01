@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class AudioExtensionExample : MonoBehaviour
 {
-    private AudioSource source;
+    [SerializeField]private AudioSource[] source;
+    [SerializeField] private bool shouldLoop;
+    [SerializeField] private int startingIndex;
     // Start is called before the first frame update
     void Start()
     {
-        source = GetComponent<AudioSource>();
-        source.PlayFadeIn(2, EaseType.EaseIn);
+        source.PlayAudioSequence(2, 2, EaseType.EaseIn, EaseType.EaseOut, shouldLoop, 1, startingIndex);
     }
 }
