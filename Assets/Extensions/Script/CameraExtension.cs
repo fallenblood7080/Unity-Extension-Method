@@ -2,6 +2,9 @@
 
 namespace Extension
 {
+    /// <summary>
+    /// Contain Some Extension related to camera
+    /// </summary>
     public static class CameraExtension
     {
         /// <summary>
@@ -140,7 +143,6 @@ namespace Extension
         /// <param name="point">The viewport point to originate the Ray.</param>
         /// <param name="cam">The Camera used for the Ray creation.</param>
         /// <returns>A Ray originating from the viewport point in the camera's perspective.</returns>
-
         public static Ray ViewportToRay(this Vector3 point, Camera cam)
         {
             return cam.ViewportPointToRay(point);
