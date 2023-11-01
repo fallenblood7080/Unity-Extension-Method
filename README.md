@@ -11,8 +11,7 @@
 
 ## Table of Content
 
- - 📃 [What's the deal with this project?](#whats-the-deal-with-this-project)
- - 🤔 [Why should I care about this project](#why-should-i-care-about-this-project)
+ - 📃 [What's the deal with this project?](#whats-the-deal-with-this-project-why-should-i-care)
  - ⌨ [How do I dive in and get started?](#how-do-i-dive-in-and-get-started)
  - ⁉ [Where can I turn for help if I'm stuck?](#where-can-i-turn-for-help-if-im-stuck)
  
@@ -20,16 +19,29 @@
 
 
 
-## What's the deal with this project?
+## What's the deal with this project why should I Care?
 
-Alright, check it out! This project is all about hooking you up with a bunch of nifty extension methods that'll turbocharge your Unity workflow. Say goodbye to the slow lane and hello to lightning-fast development!⚡⚡⚡
+To answer this question, first understand what the Extension method is.
 
-## Why should I care about this project?
+> Extension methods enable you to "add" methods to existing types
+> without creating a new derived type, recompiling, or otherwise
+> modifying the original type. Extension methods are static methods, but
+> they're called as if they were instance methods on the extended type.
+> [Copied from Microsoft docs](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
-**"Why bother with this project? Well, if you're all about speeding up your development game, this is the place to be!"**
+In simpler words, this thing allows you to extend the functionality of the existing type.
+We allow string type containing many methods like ToUpper() or ToLower() to convert the string in upper and lower case respectively, but if I want to create a method which converts the string into title case (*making the first letter of each word upper case*)?
+You can go with a traditional approach like creating a method then do this: 
+```cs
+newText = TitleCase(oldtext);
+```
+now this code looks out of place if we compare it with `newText = oldText.ToUpper()` or `newText = oldText.ToLower()`, so to deal with things we can use the extensions method which will make the code look like this:
+```cs
+newText = oldText.ToTitleCase()
+```
 
-
-Imagine this: tons of ready-to-use extension methods that not only cut down your development time but also give your code that clean, straightforward look you've been dreaming of. So, if that sounds like your kind of thing, you're in the right place.
+**So How will I create it?**
+Well in the first place, you do not have to that's why this repo exists, all you need put this repo inside your unity project and just call the method like this `something.DoSomethingMoreAwesome()`
 
 ## How do I dive in and get started?
 working.... go to wiki section for contribution
