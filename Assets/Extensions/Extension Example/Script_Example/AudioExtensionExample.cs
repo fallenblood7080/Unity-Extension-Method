@@ -10,14 +10,6 @@ public class AudioExtensionExample : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-        source.PlayFadeInOut(3,3, EaseType.EaseIn,1,() => { "FadeIn".Log(); }, () => { "FadeOut".Log(); });
-/*        source.PlayFadeIn(2,EaseType.EaseOut);
-        Invoke(nameof(StopAfter5Second),5);*/
-    }
-
-    // Update is called once per frame
-    void StopAfter5Second()
-    {
-        source.StopFadeOut(2, EaseType.EaseIn);
+        source.PlayFadeIn(2, EaseType.EaseIn);
     }
 }
