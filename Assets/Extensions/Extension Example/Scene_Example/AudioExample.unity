@@ -363,7 +363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source:
-  - {fileID: 641360574}
   - {fileID: 641360568}
   shouldLoop: 1
   startingIndex: 0

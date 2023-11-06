@@ -11,6 +11,11 @@ public class AudioExtensionExample : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        source.PlayAudioSequence(2, 2, EaseType.EaseIn, EaseType.EaseOut, shouldLoop, 1, startingIndex);
+        source[0].PlayFadeInOut(3, 3, EaseType.EaseIn, EaseType.EaseOut);
+        Invoke(nameof(StopAfter), 5);
+    }
+    void StopAfter()
+    {
+        source[0].StopFadeOut(1, EaseType.Linear);
     }
 }
