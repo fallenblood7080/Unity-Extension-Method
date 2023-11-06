@@ -1,7 +1,8 @@
 <h1 align = "center">Unity Extension Method</h1>
-
-# Currently UnderDevelopment 
-### Need to add more methods and documentation
+***
+## Currently UnderDevelopment 
+#### Need to add more methods and documentation
+***
 
 [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-57b9d3.svg?style=flat&logo=unity)](https://unity3d.com) ![GitHub contributors](https://img.shields.io/github/contributors/fallenblood7080/Unity-Extension-Method) ![GitHub forks](https://img.shields.io/github/forks/fallenblood7080/Unity-Extension-Method) ![GitHub Repo stars](https://img.shields.io/github/stars/fallenblood7080/Unity-Extension-Method)
 
@@ -11,7 +12,7 @@
 
 ## Table of Content
 
- - 📃 [What's the deal with this project?](#whats-the-deal-with-this-project-why-should-i-care)
+ - 📃 [Could you tell me what's going on with this project? Why should I Care?](#Could-you-tell-me-whats-going-on-with-this-project-Why-should-I-Care)
  - ⌨ [How do I dive in and get started?](#how-do-i-dive-in-and-get-started)
  - ⁉ [Where can I turn for help if I'm stuck?](#where-can-i-turn-for-help-if-im-stuck)
  
@@ -19,7 +20,7 @@
 
 
 
-## What's the deal with this project why should I Care?
+## Could you tell me what's going on with this project? Why should I Care?
 
 To answer this question, first understand what the Extension method is.
 
@@ -40,8 +41,22 @@ now this code looks out of place if we compare it with `newText = oldText.ToUppe
 newText = oldText.ToTitleCase()
 ```
 
+
+
 **So How will I create it?**
 Well in the first place, you do not have to that's why this repo exists, all you need put this repo inside your unity project and just call the method like this `something.DoSomethingMoreAwesome()`
+
+**Here are the few Examples of Extension Method that are provided by this repo**
+```cs
+audioSource.PlayFadeIn(fadeDuration:2,EaseType.EaseIn); //Plays the audio with 2 sec fade in with ease in effect.
+```
+```cs
+explosionPoint.Add2DExplosiveForce(5, 10, explosionLayer); //Add the 2D Explosion Force of 10 unit force with the radius of 5 units which will impact the object in explosionLayer at explosionPoint(Vector2)
+```
+
+```cs
+someRandomList.GetRandomItem(2); //get 2 random items from the someRandomList
+```
 
 ## How do I dive in and get started?
 working.... go to wiki section for contribution
