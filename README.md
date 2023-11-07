@@ -59,7 +59,7 @@ someRandomList.GetRandomItem(2); //get 2 random items from the someRandomList
 ```
 
 ## How do I dive in and get started?
-working.... go to wiki section for contribution
+________________
 
 ## Where can I turn for help if I'm stuck?
 Feeling a bit stuck and need some friendly advice? No worries, we've got your back! Just swing by our [Discussion Page on GitHub](https://github.com/fallenblood7080/Unity-Extension-Method/discussions).
@@ -68,3 +68,6 @@ Feeling a bit stuck and need some friendly advice? No worries, we've got your ba
 <a href="https://github.com/fallenblood7080/Unity-Extension-Method/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=fallenblood7080/Unity-Extension-Method" />
 </a>
+<br><br><br>
+
+Here is the [Contribution Guide](https://github.com/fallenblood7080/Unity-Extension-Method/wiki/Contributions)
