@@ -68,4 +68,6 @@ Feeling a bit stuck and need some friendly advice? No worries, we've got your ba
 <a href="https://github.com/fallenblood7080/Unity-Extension-Method/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=fallenblood7080/Unity-Extension-Method" />
 </a>
-Here is the contribution guide - [Contribution](https://github.com/fallenblood7080/Unity-Extension-Method/wiki/Contributions)
+<br><br><br>
+
+Here is the [Contribution Guide](https://github.com/fallenblood7080/Unity-Extension-Method/wiki/Contributions)
