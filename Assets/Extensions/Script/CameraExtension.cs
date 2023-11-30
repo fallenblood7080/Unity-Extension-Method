@@ -147,5 +147,12 @@ namespace Extension
         {
             return cam.ViewportPointToRay(point);
         }
+
+        public static bool IsInsideView(this Camera camera, GameObject obj)
+        {
+            Vector3 objectScreenPos = camera.WorldToViewportPoint(obj.transform.position);
+            bool isInView = objectScreenPos.x > 0 && objectScreenPos.x < 1 && objectScreenPos.y > 0 && objectScreenPos.y < 1 && objectScreenPos.z > 0;
+            return isInView;
+        }
     }
 }
