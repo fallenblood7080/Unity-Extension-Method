@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Extension
 {
     /// <summary>
-    /// Some Extra Extension which are or are not related Unity,mainly C-Sharp Extensions
+    /// Extension related to generating Random Data.
     /// </summary>
     public static class RandomExtension
     {
