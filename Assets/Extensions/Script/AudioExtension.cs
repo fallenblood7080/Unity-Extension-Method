@@ -4,6 +4,8 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+
+
 namespace Extension
 {
     /// <summary>
@@ -32,9 +34,9 @@ namespace Extension
         /// <param name="fadeDuration">The duration of the fade-out effect in seconds.</param>
         /// <param name="easeType">The type of easing to use for the fade-out animation.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
-        public static void StopFadeOut(this AudioSource audioSource, float fadeDuration, EaseType easeType, Action OnFadeOutComplete = null)
+        public static void StopFadeOut(this AudioSource audioSource, float fadeDuration, EaseType easeType,Action OnFadeOutStart = null ,Action OnFadeOutComplete = null)
         {
-            audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeDuration, easeType, true, OnFadeOutComplete));
+            audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeDuration, easeType, true, OnFadeOutStart, OnFadeOutComplete));
         }
         /// <summary>
         /// Plays an AudioSource with a fade-out effect in the end.
@@ -43,10 +45,10 @@ namespace Extension
         /// <param name="fadeDuration">The duration of the fade-out effect in seconds.</param>
         /// <param name="easeType">The type of easing to use for the fade-out animation.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
-        public static void PlayFadeOut(this AudioSource audioSource, float fadeDuration, EaseType easeType, Action OnFadeOutComplete = null)
+        public static void PlayFadeOut(this AudioSource audioSource, float fadeDuration, EaseType easeType, Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
             audioSource.Play();
-            audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeDuration, easeType, false, OnFadeOutComplete));
+            audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeDuration, easeType, false,OnFadeOutStart, OnFadeOutComplete));
         }
         /// <summary>
         /// Plays an AudioSource with a fade-in followed by a fade-out effect.
@@ -58,17 +60,17 @@ namespace Extension
         /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when the fade-in is complete.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
-        public static void PlayFadeInOut(this AudioSource audioSource, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+        public static void PlayFadeInOut(this AudioSource audioSource, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null, Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
             audioSource.PlayFadeIn(fadeInDuration, fadeInEase, targetVolume, () =>
             {
                 OnFadeInComplete?.Invoke();
-                audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeOutDuration, fadeOutEase, false, () =>
+                audioSource.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(AudioFadeOut(audioSource, fadeOutDuration,fadeOutEase, false, OnFadeOutStart,() =>
                 {
                     OnFadeOutComplete?.Invoke();
                     if (audioSource.loop)
                     {
-                        audioSource.PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume, OnFadeInComplete, OnFadeOutComplete);
+                        audioSource.PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume, OnFadeInComplete, OnFadeOutStart,OnFadeOutComplete);
                     }
                 }));
             });
@@ -86,10 +88,10 @@ namespace Extension
         /// <param name="startingIndex">The index of the AudioSource to start the sequence from (default is 0).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when each fade-in is complete.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when each fade-out is complete.</param>
-        public static void PlayAudioSequence(this AudioSource[] audioSourceSeq, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, bool shouldLoopSeq = false, float targetVolume = 1, int startingIndex = 0, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+        public static void PlayAudioSequence(this AudioSource[] audioSourceSeq, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, bool shouldLoopSeq = false, float targetVolume = 1, int startingIndex = 0, Action OnFadeInComplete = null,Action OnFadeOutStart = null ,Action OnFadeOutComplete = null)
         {
             int index = startingIndex;
-            audioSourceSeq[index].PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume, OnFadeInComplete, OnFadeOutComplete: () =>
+            audioSourceSeq[index].PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume, OnFadeInComplete, OnFadeOutStart, OnFadeOutComplete: () =>
             {
                 OnFadeOutComplete?.Invoke();
                 index++;
@@ -105,7 +107,7 @@ namespace Extension
                         return;
                     }
                 }
-                audioSourceSeq.PlayAudioSequence(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, shouldLoopSeq, targetVolume, index, OnFadeInComplete, OnFadeOutComplete);
+                audioSourceSeq.PlayAudioSequence(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, shouldLoopSeq, targetVolume, index, OnFadeInComplete, OnFadeOutStart,OnFadeOutComplete);
             });
         }
 
@@ -154,7 +156,7 @@ namespace Extension
         /// <param name="fadeOutDuration">The duration of the fade-out effect (in seconds).</param>
         /// <param name="fadeOutEaseType">The easing type for the fade-out effect.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
-        public static void PlayPortionFadeOut(this AudioSource source, float start, float end, float fadeOutDuration, EaseType fadeOutEaseType, Action OnFadeOutComplete = null)
+        public static void PlayPortionFadeOut(this AudioSource source, float start, float end, float fadeOutDuration, EaseType fadeOutEaseType,Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
             float stop = end;
             if (end <= 0 || end <= start)
@@ -162,7 +164,7 @@ namespace Extension
                 stop = source.clip.length;
             }
             source.clip = source.clip.MakeSubclip(start, stop);
-            source.PlayFadeOut(fadeOutDuration, fadeOutEaseType, OnFadeOutComplete);
+            source.PlayFadeOut(fadeOutDuration, fadeOutEaseType,OnFadeOutStart ,OnFadeOutComplete);
         }
 
         /// <summary>
@@ -178,7 +180,7 @@ namespace Extension
         /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when the fade-in is complete.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
-        public static void PlayPortion(this AudioSource source, float start, float end, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+        public static void PlayPortion(this AudioSource source, float start, float end, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null,Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
             float stop = end;
             if (end <= 0 || end <= start)
@@ -186,7 +188,7 @@ namespace Extension
                 stop = source.clip.length;
             }
             source.clip = source.clip.MakeSubclip(start, stop);
-            source.PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume, OnFadeInComplete, OnFadeOutComplete);
+            source.PlayFadeInOut(fadeInDuration, fadeOutDuration, fadeInEase, fadeOutEase, targetVolume, OnFadeInComplete,OnFadeOutStart, OnFadeOutComplete);
         }
         /// <summary>
         /// Creates a subclip from the original AudioClip based on specified start and stop times.
@@ -251,14 +253,16 @@ namespace Extension
                 else if (ease == EaseType.EaseInOut) audioSource.volume = t.LerpEaseOutQuad(targetVolume);
                 yield return null;
             }
+
             OnFadeInComplete?.Invoke();
             yield break;
         }
-        private static IEnumerator AudioFadeOut(AudioSource audioSource, float duration, EaseType ease, bool forceStop, Action OnFadeOutComplete = null)
+        private static IEnumerator AudioFadeOut(AudioSource audioSource, float duration, EaseType ease, bool forceStop, Action OnFadeOutStart = null,Action OnFadeOutComplete = null)
         {
             float currentTime = 0;
             float startVolume = audioSource.volume;
             float playbackTime = audioSource.time;
+            bool isStartFadeInvoke = false;
             if (!forceStop)
             {
                 while (true)
@@ -266,6 +270,11 @@ namespace Extension
                     playbackTime += Time.deltaTime;
                     if ((audioSource.clip.length - playbackTime) <= duration)
                     {
+                        if (!isStartFadeInvoke)
+                        {
+                            isStartFadeInvoke = true;
+                            OnFadeOutStart?.Invoke(); 
+                        }
                         currentTime += Time.deltaTime;
                         float t = currentTime / duration;
 
@@ -302,6 +311,7 @@ namespace Extension
                     yield return null;
                 }
             }
+
             OnFadeOutComplete?.Invoke();
             yield break;
         }
