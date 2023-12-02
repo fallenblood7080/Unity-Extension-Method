@@ -32,6 +32,51 @@ namespace Extension
             Debug.Log($"<color=#{logColorCode}><size={fontSize}>{message}</size></color>");
         }
         /// <summary>
+        /// Write the log(elements in Array) in console.Equivalent to Debug.Log()
+        /// Example:
+        /// <code>
+        /// Array.Log();
+        /// "Message in RedColor".Log(logColorCode: "ff0000");
+        /// "Message in Red Color with 18 font Size".Log(logColorCode: "ff0000",fontSize: 18);
+        /// </code>
+        /// </summary>
+        /// <param name="message">Message to be wrriten in Unity Console</param>
+        /// <param name="logColorCode">hexcode of color</param>
+        /// <param name="fontSize">font size of message</param>
+
+        public static void Log<T>(this T[] message, string logColorCode = "ffffff", int fontSize = 12)
+        {
+            string msg = "";
+            for (int i = 0; i < message.Length; i++)
+            {
+                msg = msg + message[i].ToString() + ",";
+            }
+            Debug.Log($"<color=#{logColorCode}><size={fontSize}>{msg}</size></color>");
+        }
+        /// <summary>
+        /// Write the log(elements in List) in console.Equivalent to Debug.Log()
+        /// Example:
+        /// <code>
+        /// List.Log();
+        /// "Message in RedColor".Log(logColorCode: "ff0000");
+        /// "Message in Red Color with 18 font Size".Log(logColorCode: "ff0000",fontSize: 18);
+        /// </code>
+        /// </summary>
+        /// <param name="message">Message to be wrriten in Unity Console</param>
+        /// <param name="logColorCode">hexcode of color</param>
+        /// <param name="fontSize">font size of message</param>
+        public static void Log<T>(this List<T> message, string logColorCode = "ffffff", int fontSize = 12)
+        {
+            string msg = "";
+            for (int i = 0; i < message.Count; i++)
+            {
+                msg = msg + message[i].ToString() + ",";
+            }
+            Debug.Log($"<color=#{logColorCode}><size={fontSize}>{msg}</size></color>");
+        }
+
+
+        /// <summary>
         /// Draw the Polygon Outline.
         /// Useful for drawing various polygons like squares, hexagons, and circles.
         /// <code>
