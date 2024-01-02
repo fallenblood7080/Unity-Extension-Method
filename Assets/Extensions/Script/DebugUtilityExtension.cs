@@ -125,7 +125,7 @@ namespace Extension
         /// <param name="origin">The starting point of the ray in 2D space.</param>
         /// <param name="color">The color of the visualization line.</param>
         /// <param name="dur">The duration for which the visualization line should appear in seconds.</param>
-        public static void VisualizeRay(this RaycastHit2D ray2D, Vector2 origin, Color color, float dur = 0.1f)
+        public static void VisualizeRay2D(this RaycastHit2D ray2D, Vector2 origin, Color color, float dur = 0.1f)
         {
             Debug.DrawLine(origin, ray2D.point, color, dur);
         }
