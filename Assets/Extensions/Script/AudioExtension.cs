@@ -4,8 +4,6 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-
-
 namespace Extension
 {
     /// <summary>
@@ -224,6 +222,7 @@ namespace Extension
         /// <param name="path">The file path where the WAV file will be saved.</param>
         public static void SaveClip(this AudioClip clip,string path)
         {
+#if UNITY_EDITOR
             // Ensure the directory exists
             string directory = Path.GetDirectoryName(path);
             if (!Directory.Exists(directory))
@@ -237,6 +236,7 @@ namespace Extension
 
             AssetDatabase.Refresh();
             Debug.Log("AudioClip saved as WAV to: " + path);
+#endif
         }
 
 
