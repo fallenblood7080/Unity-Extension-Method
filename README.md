@@ -55,6 +55,7 @@ someRandomList.GetRandomItem(2); //get 2 random items from the someRandomList
 ```
 
 ## How do I dive in and get started?
+Just Download the package from [Release](https://github.com/fallenblood7080/Unity-Extension-Method/releases) and import it in unity and you are done! 
 ________________
 
 ## Where can I turn for help if I'm stuck?
