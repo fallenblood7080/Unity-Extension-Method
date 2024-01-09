@@ -1,7 +1,7 @@
 # Audio Extension
 ## Extension Related to Unity's built-in Audio System
 
-#### *Note: Following Extension method depends on [EasingExtension]()*
+#### *Note: Following Extension method depends on [EasingExtension](./Assets/Extensions/Docs/EasingExtension.md)*
 
 ## Index
 - [PlayFadeIn](#playfadein)
