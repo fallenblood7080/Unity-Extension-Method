@@ -31,6 +31,7 @@ namespace Extension
         /// <param name="audioSource">The AudioSource to stop with the fade-out effect.</param>
         /// <param name="fadeDuration">The duration of the fade-out effect in seconds.</param>
         /// <param name="easeType">The type of easing to use for the fade-out animation.</param>
+        /// <param name="OnFadeOutStart">An optional callback to invoke when the fade-out is started.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
         public static void StopFadeOut(this AudioSource audioSource, float fadeDuration, EaseType easeType,Action OnFadeOutStart = null ,Action OnFadeOutComplete = null)
         {
@@ -42,6 +43,7 @@ namespace Extension
         /// <param name="audioSource">The AudioSource to play with the fade-out effect.</param>
         /// <param name="fadeDuration">The duration of the fade-out effect in seconds.</param>
         /// <param name="easeType">The type of easing to use for the fade-out animation.</param>
+        /// <param name="OnFadeOutStart">An optional callback to invoke when the fade-out is started.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
         public static void PlayFadeOut(this AudioSource audioSource, float fadeDuration, EaseType easeType, Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
@@ -54,9 +56,10 @@ namespace Extension
         /// <param name="audioSource">The AudioSource to play with the fade-in and fade-out effects.</param>
         /// <param name="fadeInDuration">The duration of the fade-in effect in seconds.</param>
         /// <param name="fadeOutDuration">The duration of the fade-out effect in seconds.</param>
-        /// <param name="fadeInEase">The type of easing to use for the fade-in and fade-out animations.</param>
+        /// <param name="fadeInEase">The easing type for fade-in and fade-out animations.</param>
         /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when the fade-in is complete.</param>
+        /// <param name="OnFadeOutStart">An optional callback to invoke when the fade-out is started.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
         public static void PlayFadeInOut(this AudioSource audioSource, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null, Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
@@ -76,15 +79,16 @@ namespace Extension
         /// <summary>
         /// Plays a sequence of AudioSources with fade-in and fade-out effects, allowing for sequential playback.
         /// </summary>
-        /// <param name="audioSourceSeq">An array of AudioSources to play in sequence.</param>
+        /// <param name="audioSourceSeq">An array of AudioSources to play sequentially.</param>
         /// <param name="fadeInDuration">The duration of the fade-in effect for each AudioSource in the sequence (in seconds).</param>
         /// <param name="fadeOutDuration">The duration of the fade-out effect for each AudioSource in the sequence (in seconds).</param>
         /// <param name="fadeInEase">The easing type for the fade-in animation.</param>
         /// <param name="fadeOutEase">The easing type for the fade-out animation.</param>
-        /// <param name="shouldLoopSeq">Indicates whether the sequence should loop when it reaches the end.</param>
+        /// <param name="shouldLoopSeq">Indicates whether the sequence should loop when it ends.</param>
         /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
         /// <param name="startingIndex">The index of the AudioSource to start the sequence from (default is 0).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when each fade-in is complete.</param>
+        /// <param name="OnFadeOutStart">An optional callback to invoke when the fade-out is started.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when each fade-out is complete.</param>
         public static void PlayAudioSequence(this AudioSource[] audioSourceSeq, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, bool shouldLoopSeq = false, float targetVolume = 1, int startingIndex = 0, Action OnFadeInComplete = null,Action OnFadeOutStart = null ,Action OnFadeOutComplete = null)
         {
@@ -153,6 +157,7 @@ namespace Extension
         /// <param name="end">The end time of the portion (in seconds).</param>
         /// <param name="fadeOutDuration">The duration of the fade-out effect (in seconds).</param>
         /// <param name="fadeOutEaseType">The easing type for the fade-out effect.</param>
+        /// <param name="OnFadeOutStart">An optional callback to invoke when the fade-out is started.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
         public static void PlayPortionFadeOut(this AudioSource source, float start, float end, float fadeOutDuration, EaseType fadeOutEaseType,Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
@@ -177,6 +182,7 @@ namespace Extension
         /// <param name="fadeOutEase">The easing type for the fade-out effect.</param>
         /// <param name="targetVolume">The target volume to reach at the end of the fade-in (default is 1).</param>
         /// <param name="OnFadeInComplete">An optional callback to invoke when the fade-in is complete.</param>
+        /// <param name="OnFadeOutStart">An optional callback to invoke when the fade-out is started.</param>
         /// <param name="OnFadeOutComplete">An optional callback to invoke when the fade-out is complete.</param>
         public static void PlayPortion(this AudioSource source, float start, float end, float fadeInDuration, float fadeOutDuration, EaseType fadeInEase, EaseType fadeOutEase, float targetVolume = 1, Action OnFadeInComplete = null,Action OnFadeOutStart = null, Action OnFadeOutComplete = null)
         {
