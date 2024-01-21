@@ -65,7 +65,6 @@ Feeling a bit stuck and need some friendly advice? No worries, we've got your ba
 ## Contributors
 
 <!-- readme: collaborators,contributors -start -->
-
 <!-- readme: collaborators,contributors -end -->
 
 Here is the [Contribution Guide](https://github.com/fallenblood7080/Unity-Extension-Method/wiki/Contributions)
