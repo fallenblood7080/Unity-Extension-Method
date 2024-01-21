@@ -43,13 +43,13 @@ audioSource.PlayFadeIn(fadeDuration, easeType, targetVolume, OnFadeInComplete);
 
 ### Parameters
 
-| Parameter          | Data Type | Description                                                                                                       |
-|--------------------|-----------|-------------------------------------------------------------------------------------------------------------------|
-| audioSource        | AudioSource | The AudioSource to play with the fade-in effect.                                                               |
-| fadeDuration       | float     | The duration of the fade-in effect (in seconds).                                                               |
-| easeType           | EaseType  | The type of easing to use for the fade-in animation.                                                            |
-| targetVolume       | float     | The target volume to reach at the end of the fade-in (default is 1).                                           |
-| OnFadeInComplete   | Action    | An optional callback to invoke when the fade-in is complete.                                                    |
+| Parameter          | Data Type   | Description                                                                                                       |
+|--------------------|-----------  |-------------------------------------------------------------------------------------------------------------------|
+| audioSource        | AudioSource | The AudioSource to play with the fade-in effect.                                                                  |
+| fadeDuration       | float       | The duration of the fade-in effect (in seconds).                                                                  |
+| easeType           | EaseType    | The type of easing to use for the fade-in animation.                                                              |
+| targetVolume       | float       | The target volume to reach at the end of the fade-in (default is 1).                                              |
+| OnFadeInComplete   | Action      | An optional callback to invoke when the fade-in is complete.                                                      |
 
 ### Method Description
 
