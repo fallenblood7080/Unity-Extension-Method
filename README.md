@@ -65,6 +65,23 @@ Feeling a bit stuck and need some friendly advice? No worries, we've got your ba
 ## Contributors
 
 <!-- readme: collaborators,contributors -start -->
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/fallenblood7080">
+            <img src="https://avatars.githubusercontent.com/u/67326508?v=4" width="100;" alt="fallenblood7080"/>
+            <br />
+            <sub><b>Fallenblood</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Suyash1AG">
+            <img src="https://avatars.githubusercontent.com/u/148102967?v=4" width="100;" alt="Suyash1AG"/>
+            <br />
+            <sub><b>Suyash</b></sub>
+        </a>
+    </td></tr>
+</table>
 <!-- readme: collaborators,contributors -end -->
 
 Here is the [Contribution Guide](https://github.com/fallenblood7080/Unity-Extension-Method/wiki/Contributions)
