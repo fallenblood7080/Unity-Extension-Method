@@ -1,43 +1,42 @@
 # VideoPlayerExtensions Class
 
+#Index
+- [SmoothVideoPause](#SmoothVideoPause)
 
-## SmoothVideoPause Method
+## SmoothVideoPause
 
-Performs a smooth pause or unpause of a Unity `VideoPlayer` by gradually adjusting the playback speed, creating a fade effect.
-
+Smoothly pauses or unpauses the `VideoPlayer` with a fade effect.
 
 ### Usage
 
 ```csharp
-// Example: Smoothly pause a VideoPlayer for 1 second
+// Example: Smoothly pause the VideoPlayer with a fade effect lasting 1 second
 videoPlayer.SmoothVideoPause(1.0f, true);
-
+```
 
 ### General Syntax
 
-void SmoothVideoPause(this VideoPlayer videoPlayer, float fadeDuration = 0.5f, bool pause = true);
+```csharp
+videoPlayer.SmoothVideoPause(fadeDuration, pause);
+```
 
+### Parameters
 
-### Parameter
-
-Parameter	Data Type	Description
-videoPlayer	VideoPlayer	The Unity VideoPlayer instance to be paused or unpaused smoothly.
-fadeDuration	float	The duration of the fade effect in seconds (default is 0.5 seconds).
-pause	bool	If true, smoothly pauses the video. If false, smoothly unpauses the video.
-
-| Parameter          | Data Type    | Description                                                                                                       |
-|--------------------|-----------   |-------------------------------------------------------------------------------------------------------------------|
-| videoPlayer        | VideoPlayer  | The Unity VideoPlayer instance to be paused or unpaused smoothly.                                                 |
-| fadeDuration       | float        | The duration of the fade effect in seconds (default is 0.5 seconds).                                              |
-| pause              | bool         | If true, smoothly pauses the video. If false, smoothly unpauses the video.                                        |
+| Parameter     | Data Type  | Description                                            |
+|---------------|------------|--------------------------------------------------------|
+| videoPlayer   | VideoPlayer| The `VideoPlayer` instance is to be paused or unpaused.   |
+| fadeDuration  | float      | The duration of the fade effect in seconds. The default is 0.5 seconds. |
+| pause         | bool       | If true, pauses the video; if false, unpauses the video.|
 
 ### Method Description
 
-This extension method smoothly pauses or unpauses a Unity VideoPlayer by gradually adjusting the playback speed, creating a fade effect. It achieves this by lerping the playbackSpeed property of the VideoPlayer over the specified fadeDuration. The method also utilizes coroutines to handle the asynchronous nature of the fade.
+This extension method smoothly pauses or unpauses the specified `VideoPlayer` with a fade effect. It utilizes a coroutine (`SmoothVideoPauseCoroutine`) to gradually adjust the audio volume associated with the `VideoPlayer`, creating a smooth transition effect.
 
+### Example
 
-### Expamle
-
+```csharp
+// Smoothly pause the VideoPlayer with a fade effect lasting 1 second
 videoPlayer.SmoothVideoPause(1.0f, true);
+```
 
-In this example, the SmoothVideoPause method is used to smoothly pause the videoPlayer over a duration of 1 second. Adjust the fadeDuration and pause parameters according to your specific requirements.
+In this example, the `SmoothVideoPause` method smoothly pauses the `videoPlayer` with a fade effect lasting 1 second. You can adjust the values according to your specific requirements.
