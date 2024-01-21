@@ -62,9 +62,9 @@ ________________
 Feeling a bit stuck and need some friendly advice? No worries, we've got your back! Just swing by our [Discussion Page on GitHub](https://github.com/fallenblood7080/Unity-Extension-Method/discussions).
 
 ### Contributors
-<a href="https://github.com/fallenblood7080/Unity-Extension-Method/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=fallenblood7080/Unity-Extension-Method" />
-</a>
-<br><br><br>
+## Contributors
+
+<!-- readme: collaborators,contributors -start -->
+<!-- readme: collaborators,contributors -end -->
 
 Here is the [Contribution Guide](https://github.com/fallenblood7080/Unity-Extension-Method/wiki/Contributions)
