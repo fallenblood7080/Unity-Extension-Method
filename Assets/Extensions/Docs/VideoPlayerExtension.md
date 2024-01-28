@@ -1,6 +1,6 @@
 # VideoPlayerExtensions Class
 
-#Index
+# Index
 - [SmoothVideoPause](#SmoothVideoPause)
 
 ## SmoothVideoPause
